@@ -16,14 +16,14 @@ credentials = {'usernames': {
 authenticator = stauth.Authenticate(credentials,
     'some_cookie_name', 'some_signature_key', cookie_expiry_days=30)
 
-name, authentication_status, username = authenticator.login('Login')
+name, authentication_status, username = authenticator.login(location='Login')
 
 if authentication_status:
     with st.container():
         cols1,cols2 = st.columns(2)
         cols1.write('欢迎 *%s*' % (name))
         with cols2.container():
-            authenticator.logout('Logout')
+            authenticator.logout(location='Logout')
             
 elif authentication_status == False:
     st.error('Username/password is incorrect')
