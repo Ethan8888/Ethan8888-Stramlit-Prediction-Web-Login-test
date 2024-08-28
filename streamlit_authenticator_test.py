@@ -1,6 +1,5 @@
 import yaml
 import streamlit as st
-from yaml import SafeLoader
 import streamlit_authenticator as stauth
 from streamlit_authenticator.utilities.exceptions import (CredentialsError,
                                                           ForgotError,
@@ -11,7 +10,7 @@ from streamlit_authenticator.utilities.exceptions import (CredentialsError,
 
 # Loading config file
 with open('../config.yaml', 'r', encoding='utf-8') as file:
-    config = yaml.load(file, Loader=SafeLoader)
+    config = yaml.load(file)
 
 # Creating the authenticator object
 authenticator = stauth.Authenticate(
