@@ -13,6 +13,18 @@ from streamlit_authenticator.utilities.exceptions import (CredentialsError,
 with open('config.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
+st.code(f"""
+Credentials:
+
+Name: {config['credentials']['usernames']['jsmith']['name']}
+Username: jsmith
+Password: {'abc' if 'pp' not in config['credentials']['usernames']['jsmith'].keys() else config['credentials']['usernames']['jsmith']['pp']}
+
+Name: {config['credentials']['usernames']['rbriggs']['name']}
+Username: rbriggs
+Password: {'def' if 'pp' not in config['credentials']['usernames']['rbriggs'].keys() else config['credentials']['usernames']['rbriggs']['pp']}
+"""
+)
 
 
 # Creating the authenticator object
