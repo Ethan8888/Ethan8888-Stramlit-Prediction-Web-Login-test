@@ -1,6 +1,5 @@
 import streamlit as st
 import streamlit_authenticator as stauth
-import PVForecastWeb
 
 st.set_page_config(layout="wide") #设置屏幕展开方式，宽屏模式布局更好
 
@@ -25,8 +24,7 @@ if authentication_status:
         cols1.write('欢迎 *%s*' % (name))
         with cols2.container():
             authenticator.logout('Logout', 'main')
-
-    PVForecastWeb.main()  # 进入业务应用
+            
 elif authentication_status == False:
     st.error('Username/password is incorrect')
 elif authentication_status == None:
