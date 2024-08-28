@@ -1,0 +1,33 @@
+import streamlit as st
+import streamlit_authenticator as stauth
+import PVForecastWeb
+
+st.set_page_config(layout="wide") #设置屏幕展开方式，宽屏模式布局更好
+
+credentials = {'usernames': {
+                'xiaoyw': {'email': 'xiaoyw****@gmail.com',
+                            'name': '肖永威',
+                            'password': '*************'},   
+                'admin': {'email': 'admin***@gmail.com',
+                            'name': '管理员',
+                            'password': '************  '} 
+                            }
+               }
+
+authenticator = stauth.Authenticate(credentials,
+    'some_cookie_name', 'some_signature_key', cookie_expiry_days=30)
+
+name, authentication_status, username = authenticator.login('Login', 'main')
+
+if authentication_status:
+    with st.container():
+        cols1,cols2 = st.columns(2)
+        cols1.write('欢迎 *%s*' % (name))
+        with cols2.container():
+            authenticator.logout('Logout', 'main')
+
+    PVForecastWeb.main()  # 进入业务应用
+elif authentication_status == False:
+    st.error('Username/password is incorrect')
+elif authentication_status == None:
+    st.warning('Please enter your username and password')
