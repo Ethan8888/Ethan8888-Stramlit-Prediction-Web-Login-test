@@ -13,7 +13,6 @@ from streamlit_authenticator.utilities.exceptions import (CredentialsError,
 with open('config.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
-st.image('logo.png')
 
 st.code(f"""
 Credentials:
